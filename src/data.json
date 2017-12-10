@@ -2,7 +2,7 @@
     "seller": {
       "name": "粥品香坊（回龙观）",
       "description": "蜂鸟专送",
-      "deliveryTime": 38,
+      "deliveryTime": 20,
       "score": 4.2,
       "serviceScore": 4.1,
       "foodScore": 4.3,
@@ -31,6 +31,10 @@
         },
         {
           "type": 4,
+          "description": "已加入“外卖保”计划,食品安全保障"
+        },
+        {
+          "type": 5,
           "description": "已加入“外卖保”计划,食品安全保障"
         }
       ],
@@ -1147,7 +1151,6 @@
         "deliveryTime": "",
         "score": 4,
         "rateType": 0,
-        "deliveryTime": "",
         "text": "服务态度不错",
         "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
         "recommend": [

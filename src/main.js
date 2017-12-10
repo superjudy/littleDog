@@ -4,8 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import $ from 'jquery'
+import VueResource from 'vue-resource';
 import 'bootstrap/css/bootstrap.min.css'
 import 'bootstrap/js/bootstrap.min.js'
+
+Vue.use(VueResource);
 
 Vue.config.productionTip = false
 
