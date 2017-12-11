@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="customer container-fluid">
     <!-- 卖家相关信息 -->
     <div class="container-fluid">
@@ -7,7 +8,7 @@
         <div class="col-xs-9">
           <p class="cus-title text-left"><span class="label label-danger">品牌</span> {{seller.name}}</p>
           <p class="cus-info text-left">{{seller.description}} / {{seller.deliveryTime}}分钟到达</p>
-          <p class="cus-info text-left"><span class="label bg-white">减</span> {{seller.supports[0].description}} <a href="javascript:;">{{seller.supports.length}}个&gt;</a></p>
+          <p class="cus-info text-left"><span class="label bg-white">减</span> {{supports[0].description}} <a href="javascript:;"  data-toggle="modal" data-target="#layer" >{{supports.length}}个&gt;</a></p>
         </div>
       </div>
       <p class="cus-intro text-left overflow-left">
@@ -44,7 +45,41 @@
       </div>
     </div>
   </div>
+
+  <!-- 优惠信息弹框 -->
+  <div class="modal mask" role="dialog" id="layer">
+    <div class="mask-in">
+      <div class="seller-title">
+        <h3>{{seller.name}}</h3>
+        <ul class="stars">
+          <li v-for="value in star" :key="value">
+            <img v-if="value" src="../assets/img/star24_on@2x.png" alt="">
+            <img v-if="!value" src="../assets/img/star24_off@2x.png" alt="">            
+          </li>
+        </ul>
+      </div>
+      <div class="discount">
+        <h3>优惠信息</h3>
+        <ul class="discount-ul">
+          <li v-for="value in supports" :key="value.description" class="text-left">
+            <a href="javascript:;" v-if="value.type==0">
+              <img src="../assets/img/decrease_1@2x.png" alt="">
+            </a>
+            <a href="javascript:;" v-if="value.type==1 || value.type==2">
+              <img src="../assets/img/discount_1@2x.png" alt="">
+            </a>
+            <a href="javascript:;" v-if="value.type==3 || value.type==4">
+              <img src="../assets/img/special_1@2x.png" alt="">
+            </a>
+            {{value.description}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>  
+</div>
 </template>
+
 
 <script>
 import res from "../data.json"
@@ -53,17 +88,25 @@ export default {
   data () {
     return {
       seller: null,
-      goods: null
+      goods: null,
+      supports: null,
+      star:[]
     }
   },
   methods:{
    abc:function(){
-     var that = this;
-     that.seller = res.seller;
-     that.goods = res.goods;
+     var _this = this;
+     _this.seller = res.seller;
+     _this.goods = res.goods;
+     _this.supports = res.seller.supports;
 
-  
-     
+     for (var i = 0; i < 5; i++) {
+       if(i < _this.seller.stars){
+         _this.star.push(true)
+       }else{
+         _this.star.push(false)
+       }
+     }
    }
   },
   created:function(){
@@ -149,5 +192,40 @@ export default {
   border-right:1px solid #ccc;
   border-bottom:1px solid #ccc;
   box-sizing: border-box;
+}
+
+/* 优惠信息弹框 */
+.mask{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top:0;
+  background: rgba(0,0,0,.75);
+}
+.seller-title{
+  margin-top: 8rem;
+}
+.seller-title h3{
+  font-weight: bold;
+  font-size: 3.3rem;
+  line-height: 4.6rem;
+  color:#ffffff;
+  margin: 0 auto 2rem;
+}
+.stars li{
+  display: inline;
+}
+.discount{
+  color: #ffffff;
+}
+.discount-ul{
+  width:70%;
+  margin:1rem auto 2rem;
+}
+.discount-ul li{
+  height: 3.6rem;
+  line-height: 3.6rem;
+  font-size: 2.6rem;
 }
 </style>
