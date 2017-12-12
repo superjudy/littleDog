@@ -17,6 +17,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   letter-spacing: 1px;
+  color: #ffffff;
 }
 .container-fluid,.col-xs-2,.col-xs-10{
   padding:0;

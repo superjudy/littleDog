@@ -4,7 +4,7 @@
     <!-- 卖家相关信息 -->
     <div class="container-fluid">
       <div class="row cus-bg">
-        <div class="col-xs-3"><img src="../assets/img/cus_pro.png" alt=""/></div>
+        <div class="col-xs-3"><img :src="seller.avatar" alt="" class="width114"/></div>
         <div class="col-xs-9">
           <p class="cus-title text-left"><span class="label label-danger">品牌</span> {{seller.name}}</p>
           <p class="cus-info text-left">{{seller.description}} / {{seller.deliveryTime}}分钟到达</p>
@@ -13,20 +13,28 @@
       </div>
       <p class="cus-intro text-left overflow-left">
         <span class="label bg-white">公告</span> 
-        <strong>{{seller.name}}</strong>
+        <strong>{{seller.bulletin}}</strong>
       </p>
     </div>
 
     <!-- 产品信息 -->
     <div class="container-fluid">
       <ul class="nav nav-pills">
-        <li role="presentation"><a href="javascript:;" class="active">商品</a></li>
-        <li role="presentation"><a href="javascript:;">评价</a></li>
-        <li role="presentation"><a href="javascript:;">商家</a></li>
+        <li role="presentation">
+          <router-link to="/index/product" class="">商品</router-link>
+          <!-- <a v-link="/customer/product" href="javascript:;" class="">商品</a> -->
+        </li>
+        <li role="presentation">
+          <router-link to="/index/appraise" class="">评价</router-link>          
+        </li>
+        <li role="presentation">
+          <router-link to="/index/merchant" class="">商家</router-link>
+        </li>
       </ul>
     </div>
+    <router-view/>
 
-    <div class="row">
+<!--     <div class="row">
       <div class="col-xs-3">
         <ul class="pro-intro">
           <li class="overflow-left" v-for="val in goods" :key="val.name">
@@ -43,7 +51,7 @@
       <div class="col-xs-9">
         
       </div>
-    </div>
+    </div> -->
   </div>
 
   <!-- 优惠信息弹框 -->
@@ -75,6 +83,13 @@
           </li>
         </ul>
       </div>
+      <div class="notice">
+        <h3>商家公告</h3>
+        <p class="text-left">{{seller.bulletin}}</p>
+      </div>
+      <button class="close" data-dismiss="modal">
+        <span>&times;</span>
+      </button>
     </div>
   </div>  
 </div>
@@ -119,11 +134,15 @@ export default {
 <style scoped>
 .customer{
   max-width: 640px;
+  overflow-x: hidden;
 }
 .cus-bg{
   padding:36px 18px 4.8rem 36px;
   background: url("../assets/img/cus_bg.png") no-repeat;
   background-size: 100% 100%;
+}
+.width114{
+  width:114px;
 }
 .cus-title{
   font-size: 2.2rem;
@@ -178,20 +197,8 @@ export default {
 .nav>li>a:hover{
   background: none;
 }
-.nav>li>a.active{
-  color:#ff0000;
-}
-.pro-intro{
-  border-top:1px solid #ccc;
-}
-.pro-intro>li{
-  height: 5rem;
-  line-height: 5rem;
-  font-size: 2rem;
-  color:#333333;
-  border-right:1px solid #ccc;
-  border-bottom:1px solid #ccc;
-  box-sizing: border-box;
+.nav>li a.router-link-active{
+  color: #ff0000;
 }
 
 /* 优惠信息弹框 */
@@ -204,28 +211,55 @@ export default {
   background: rgba(0,0,0,.75);
 }
 .seller-title{
-  margin-top: 8rem;
+  margin: 8rem auto 3rem;
 }
 .seller-title h3{
   font-weight: bold;
   font-size: 3.3rem;
   line-height: 4.6rem;
   color:#ffffff;
-  margin: 0 auto 2rem;
+  margin: 0 auto;
+  opacity: 0.8;
 }
 .stars li{
   display: inline;
+  margin:0 0.5rem;
 }
 .discount{
-  color: #ffffff;
+  opacity: 0.8;
 }
 .discount-ul{
-  width:70%;
+  width:64%;
   margin:1rem auto 2rem;
+  opacity: 0.8;
 }
 .discount-ul li{
-  height: 3.6rem;
-  line-height: 3.6rem;
-  font-size: 2.6rem;
+  height: 3rem;
+  line-height: 3rem;
+  font-size: 2rem;
+}
+.discount h3,
+.notice h3{
+  font-size: 2.4rem;
+  margin-bottom: 2rem;
+  opacity: 0.8;
+}
+.notice{
+  margin-top: 3rem;
+}
+.notice p{
+  width: 70%;
+  margin:0 auto;
+  font-size:1.6rem;
+  line-height: 2.4rem;
+  opacity: 0.8;
+}
+.close{
+  opacity: 0.8;
+  font-size: 8rem;
+  color:#ffffff;
+  text-shadow:none;
+  float: none;
+  margin-top: 3rem;
 }
 </style>

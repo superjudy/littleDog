@@ -1,17 +1,16 @@
 <template>
-  <div class="hello">
-    123
+  <div class="appraise">
+      评价
   </div>
 </template>
 
 <script>
 export default {
-  name: 'hello',
+  name: 'appraise',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      
     }
   }
 }
 </script>
-
