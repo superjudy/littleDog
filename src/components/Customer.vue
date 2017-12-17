@@ -13,7 +13,7 @@
       </div>
       <p class="cus-intro text-left overflow-left">
         <span class="label bg-white">公告</span> 
-        <strong>{{seller.bulletin}}</strong>
+        <span style="color:#ffffff;">{{seller.bulletin}}</span>
       </p>
     </div>
 

@@ -14,8 +14,23 @@
           </li>
         </ul>
       </div>
-      <div class="col-xs-9">
-        
+      <div class="set-meal col-xs-9 text-left">
+        <div class="row" v-for="val in goods" :key="val.name">
+          <h3>{{val.name}}</h3>
+          <div v-for="food in val.foods" :key="food.name">
+            <div class="row food-item">
+              <div class="col-xs-3">
+                <img :src="food.icon" alt=""/>
+              </div>
+              <div class="col-xs-9">
+                <p>{{food.name}}</p>
+                <p class="overflow-left">{{food.description}}</p>
+                <p><span>月售{{food.sellCount}}份</span><span style="margin-left:10px;">好评率{{food.rating}}%</span></p>
+                <p style="color:#ff0000;">￥{{food.price}}</p>
+              </div>
+            </div>            
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -57,6 +72,23 @@ export default {
   border-right:1px solid #ccc;
   border-bottom:1px solid #ccc;
   box-sizing: border-box;
+}
+.set-meal{
+  color: #aaaaaa;
+}
+.set-meal h3{
+  color: #aaaaaa;
+  background: #eeeeee;
+  height: 4rem;
+  line-height: 4rem;
+  width: 97%;
+  padding-left: 3%;
+  font-size: 2rem;
+  margin:0 auto;
+}
+.food-item{
+  width:98%;
+  margin:10px auto;
 }
 </style>
 
