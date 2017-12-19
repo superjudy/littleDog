@@ -1,5 +1,5 @@
 <template>
-<div>
+<div style="width:640px;height:100%;">
   <div class="customer container-fluid">
     <!-- 卖家相关信息 -->
     <div class="container-fluid">
@@ -134,7 +134,9 @@ export default {
 <style scoped>
 .customer{
   max-width: 640px;
-  overflow-x: hidden;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
 }
 .cus-bg{
   padding:36px 18px 4.8rem 36px;

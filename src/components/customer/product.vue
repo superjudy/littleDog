@@ -1,6 +1,6 @@
 <template>
   <div class="container product">
-    <div class="row">
+    <div class="row" style="height:100%;">
       <div class="col-xs-3">
         <ul class="pro-intro">
           <li class="overflow-left" v-for="val in goods" :key="val.name">
@@ -14,7 +14,7 @@
           </li>
         </ul>
       </div>
-      <div class="set-meal col-xs-9 text-left">
+      <div class="set-meal col-xs-9 text-left" style="overflow-y:auto;height:100%;">
         <div class="row" v-for="val in goods" :key="val.name">
           <h3>{{val.name}}</h3>
           <div v-for="food in val.foods" :key="food.name">
@@ -61,6 +61,15 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.product{
+  width:640px;
+  height: auto;
+  position: absolute;
+  top:261px;
+  bottom:0;
+  left:0;
+  overflow:hidden;
+}
 .pro-intro{
   border-top:1px solid #ccc;
 }
@@ -74,7 +83,7 @@ export default {
   box-sizing: border-box;
 }
 .set-meal{
-  color: #aaaaaa;
+  color: #333333;
 }
 .set-meal h3{
   color: #aaaaaa;

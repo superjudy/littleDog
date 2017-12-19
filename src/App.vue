@@ -12,6 +12,8 @@ export default {
 
 <style>
 #app {
+  width:640px;
+  height: 100%;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -19,8 +21,11 @@ export default {
   letter-spacing: 1px;
   color: #ffffff;
 }
-.container-fluid,.col-xs-2,.col-xs-10{
+.container,.container-fluid,.col-xs-2,.col-xs-10{
   padding:0;
+}
+.row{
+  margin: 0;
 }
 
 </style>
