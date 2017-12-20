@@ -2,32 +2,32 @@
   <div class="appraise container"  style="overflow-y:auto;height:100%;">
       <div class="row bt-line">
         <div class="col-xs-4 xs4">
-          <p class="score">3.9</p>
+          <p class="score">{{seller.score}}</p>
           <p>综合评分</p>
-          <p>高于周边商家</p>
+          <p>高于周边商家{{seller.rankRate}}%</p>
         </div>
         <div class="col-xs-8 xs8 text-left">
           <div>
             综合评分
-            <a>
-              <img src="../../assets/img/star24_on@2x.png" alt=""/>
-            </a>
-            <a>
-                <img src="../../assets/img/star24_off@2x.png" alt="/">
-            </a>
-            <span style="color:orangered;">3.9</span>
+            <ul class="star" style="display:inline-block;">
+              <li v-for="value in star" :key="value">
+                <img v-if="value" src="../../assets/img/star24_on@2x.png" alt="">
+                <img v-if="!value" src="../../assets/img/star24_off@2x.png" alt="">            
+              </li>
+            </ul>
+            <span style="color:orangered;">{{seller.score}}</span>
           </div>
           <div>
             服务态度
-            <a>
-              <img src="../../assets/img/star24_on@2x.png" alt=""/>
-            </a>
-            <a>
-                <img src="../../assets/img/star24_off@2x.png" alt="/">
-            </a>
-            <span style="color:orangered;">4.0</span>
+            <ul class="star" style="display:inline-block;">
+              <li v-for="value in star" :key="value">
+                <img v-if="value" src="../../assets/img/star24_on@2x.png" alt="">
+                <img v-if="!value" src="../../assets/img/star24_off@2x.png" alt="">            
+              </li>
+            </ul>
+            <span style="color:orangered;">{{seller.serviceScore}}</span>
           </div>
-          <div>送达时间 <span style="color:#888888;">44 分钟</span></div>
+          <div>送达时间 <span style="color:#888888;">{{seller.deliveryTime}} 分钟</span></div>
         </div>
       </div>
       <div class="row tb-list">
@@ -37,9 +37,31 @@
           <li role="presentation"><a href="#">不满意<span class="badge">3</span></a></li>
         </ul>
       </div>
-      <div class="row" v-for="value in ratings" :key="value.username">
-        <div class="col-xs-2"><img :src="value.avatar" class="img-circle" alt=""/></div>
-        <div class="col-xs-10"></div>
+      <div class="row ap-list" v-for="value in ratings" :key="value.username">
+        <div class="col-xs-2">
+          <img :src="value.avatar" class="img-circle ap-img" alt=""/>
+        </div>
+        <div class="col-xs-10">
+          <p class="text-left">
+            {{value.username}}
+            <span class="text-right ap-span">{{value.rateTime}}</span>
+          </p>
+          <p class="text-left">
+            <ul class="star">
+              <li v-for="value in star" :key="value">
+                <img v-if="value" src="../../assets/img/star24_on@2x.png" alt="">
+                <img v-if="!value" src="../../assets/img/star24_off@2x.png" alt="">            
+              </li>
+            </ul>
+            <span v-show="value.deliveryTime != ''">{{value.deliveryTime}}分钟送达</span>
+          </p>
+          <p class="text-left" v-show="value.text != ''">{{value.text}}</p>
+          <p class="text-left">
+            <a href="javascript:;" v-for="recd in value.recommend" :key="recd" class="ap-icon">
+              {{recd}}
+            </a>
+          </p>
+        </div>
       </div>
   </div>
 </template>
@@ -50,13 +72,25 @@ export default {
   name: 'appraise',
   data () {
     return {
-      ratings:null
+      ratings:null,
+      seller:null,
+      star:[]
     }
   },
   methods:{
     abc:function(){
       var _this = this;
+      _this.seller = res.seller;
       _this.ratings = res.ratings;
+
+    for (var i = 0; i < 5; i++) {
+       if(i < _this.seller.score){
+         _this.star.push(true)
+       }else{
+         _this.star.push(false)
+       }
+     }
+
     }
   },
   created:function(){
@@ -100,5 +134,31 @@ export default {
 .tb-list>ul{
   width:90%;
   margin:0 auto;
+}
+.ap-img{
+  width: 70px;
+}
+.ap-list{
+  padding:20px 0;
+  margin:20px auto;
+  border-bottom:1px solid #cccccc;
+}
+.ap-list p{
+  width: 100%;
+}
+.ap-span{
+  width:50%;
+  float: right;
+  margin-right: 20px;
+}
+.ap-icon{
+  padding:5px;
+  border:1px solid #cccccc;
+  margin:0 5px;
+  text-decoration: none;
+  color:#888888;
+}
+.star li{
+  display: inline;
 }
 </style>
