@@ -32,9 +32,9 @@
       </div>
       <div class="row tb-list">
         <ul class="nav nav-pills" role="tablist">
-          <li role="presentation" class="active"><a href="#">全部<span class="badge">42</span></a></li>
-          <li role="presentation"><a href="#">满意</a></li>
-          <li role="presentation"><a href="#">不满意<span class="badge">3</span></a></li>
+          <li role="presentation" class="active"><a href="#">全部<span class="badge">{{ratings.length}}</span></a></li>
+          <li role="presentation"><a href="#">满意<span class="badge">{{agreeNum}}</span></a></li>
+          <li role="presentation"><a href="#">不满意<span class="badge">{{ratings.length-agreeNum}}</span></a></li>
         </ul>
       </div>
       <div class="row ap-list" v-for="value in ratings" :key="value.username">
@@ -44,13 +44,13 @@
         <div class="col-xs-10">
           <p class="text-left">
             {{value.username}}
-            <span class="text-right ap-span">{{value.rateTime}}</span>
+            <span class="text-right ap-span">{{value.rateTime | time}}</span>
           </p>
           <p class="text-left">
             <ul class="star">
-              <li v-for="value in star" :key="value">
-                <img v-if="value" src="../../assets/img/star24_on@2x.png" alt="">
-                <img v-if="!value" src="../../assets/img/star24_off@2x.png" alt="">            
+              <li v-for="val in value.scoreArr" :key="val">
+                <img v-if="val == '1'" src="../../assets/img/star24_on@2x.png" alt="">
+                <img v-if="val == '0'" src="../../assets/img/star24_off@2x.png" alt="">            
               </li>
             </ul>
             <span v-show="value.deliveryTime != ''">{{value.deliveryTime}}分钟送达</span>
@@ -62,7 +62,7 @@
             </a>
           </p>
         </div>
-      </div>
+      </div> 
   </div>
 </template>
 
@@ -74,8 +74,14 @@ export default {
     return {
       ratings:null,
       seller:null,
-      star:[]
+      star:[],
+      agreeNum:null
     }
+  },
+  created:function(){
+      this.abc();
+      this.createAgreeNum();
+      this.createStarArray();
   },
   methods:{
     abc:function(){
@@ -90,11 +96,41 @@ export default {
          _this.star.push(false)
        }
      }
-
+    },
+    createAgreeNum:function(){
+      var sum = 0;
+      for (var i = 0; i < this.ratings.length; i++) {
+        if (this.ratings[i].score > 3) {
+          sum++;
+        }
+      }
+      this.agreeNum = sum;
+    },
+    createStarArray:function(){
+      for (var i = 0; i < this.ratings.length; i++) {
+        var arr = [];
+        for(var j = 0; j < 5; j++){
+          if(this.ratings[i].score > j){
+            arr.push(1);
+          }else{
+            arr.push(0);
+          }
+        }
+        this.ratings[i].scoreArr = arr;
+      }
     }
   },
-  created:function(){
-      this.abc()
+  filters: {
+    time: function(val){
+      var now = new Date(val);
+      var year=now.getFullYear(); 
+      var month=now.getMonth()+1; 
+      var date=now.getDate(); 
+      var hour=now.getHours(); 
+      var minute=now.getMinutes(); 
+      var second=now.getSeconds(); 
+      return year+"-"+month+"-"+date+" "+hour+":"+minute+":"+second; 
+    }
   }
 }
 </script>
