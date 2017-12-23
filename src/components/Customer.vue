@@ -22,7 +22,6 @@
       <ul class="nav nav-pills">
         <li role="presentation">
           <router-link to="/index/product" class="">商品</router-link>
-          <!-- <a v-link="/customer/product" href="javascript:;" class="">商品</a> -->
         </li>
         <li role="presentation">
           <router-link to="/index/appraise" class="">评价</router-link>          
@@ -33,25 +32,6 @@
       </ul>
     </div>
     <router-view/>
-
-<!--     <div class="row">
-      <div class="col-xs-3">
-        <ul class="pro-intro">
-          <li class="overflow-left" v-for="val in goods" :key="val.name">
-           <span v-if="val.type==1">
-             <img src="../assets/img/special_1@2x.png" alt="">
-           </span>
-           <span v-if="val.type!=1">
-             <img src="../assets/img/decrease_1@2x.png" alt="">
-           </span>
-           {{val.name}}
-          </li>
-        </ul>
-      </div>
-      <div class="col-xs-9">
-        
-      </div>
-    </div> -->
   </div>
 
   <!-- 优惠信息弹框 -->

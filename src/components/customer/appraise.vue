@@ -1,5 +1,5 @@
 <template>
-  <div class="appraise container"  style="overflow-y:auto;height:100%;">
+  <div class="appraise container">
       <div class="row bt-line">
         <div class="col-xs-4 xs4">
           <p class="score">{{seller.score}}</p>
@@ -140,6 +140,8 @@ export default {
 .appraise{
   color: #333333;
   background: #f4f4f4;
+  overflow-y:auto;
+  height:100%;
 }
 .xs4{
   border-right:1px solid #cccccc;
