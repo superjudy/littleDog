@@ -52,11 +52,17 @@
     </div>
     <div class="row" style="margin-top:30px; background:#ffffff;">
       <p class="text-left pd20 mchant-title">商家实景</p>
-      <ul>
+      <ul class="mchant-pic">
         <li>
-          <!-- <img v-for="pic in pics" :key="pic" :src="pics" alt=""> -->
+          <img v-for="pic in pics" :key="pic" :src="pic" alt="">
         </li>
       </ul>
+    </div>
+    <div class="row" style="margin-top:30px; background:#ffffff;padding-bottom:300px;">
+      <p class="text-left pd20 mchant-title">商家信息</p>
+      <div>
+        <p v-for="info in seller.infos" :key="info" class="text-left p-infos">{{info}}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -102,7 +108,7 @@ export default {
 .merchant{
   color: #333333;
   background: #f4f4f4;
-  overflow-y:scroll;
+  overflow-y:auto;
   height:100%;
 }
 .star li{
@@ -153,6 +159,20 @@ export default {
   font-size: 2rem;
   width:90%;
   margin:0 auto;
+  border-top:1px solid #cccccc;
+}
+.mchant-pic{
+  height: 180px;
+  overflow: hidden;
+}
+.mchant-pic img{
+  margin:0 5px;
+}
+.p-infos{
+  width: 90%;
+  margin:0 auto;
+  line-height: 5rem;
+  font-size: 2.2rem;
   border-top:1px solid #cccccc;
 }
 </style>

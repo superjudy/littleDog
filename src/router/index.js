@@ -4,6 +4,7 @@ import Customer from '@/components/Customer'
 import product from '@/components/customer/product'
 import appraise from '@/components/customer/appraise'
 import merchant from '@/components/customer/merchant'
+import productDetial from '@/components/productDetial'
 
 Vue.use(Router)
 
@@ -21,7 +22,7 @@ export default new Router({
       children: [ 
     　　　{ 
     　　　　path: 'product', 
-      　　　component: product 
+      　　　component: product
     　　  },
           { 
       　　　　path: 'appraise', 
@@ -32,6 +33,11 @@ export default new Router({
           　　component: merchant 
         　},
     　　]
+    },
+    {
+      path:'/productDetial',
+      name:productDetial,
+      component:productDetial
     }
   ]
 })
