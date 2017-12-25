@@ -93,3 +93,25 @@ body {
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
+.mchant-title{
+    line-height: 4rem;
+    font-size: 2.6rem;
+    border-top:1px solid #cccccc;
+    padding-top: 20px;
+  }
+.pd20{
+    padding-left: 20px;
+  }
+.notice1{
+    color:#ff0000;
+    font-size: 2rem;
+    line-height: 3rem;
+    width:90%;
+    margin:0 auto;
+  }
+  .row-bg{
+    margin-top:30px; 
+    background:#ffffff; 
+    border-bottom:1px solid #cccccc;
+  }
