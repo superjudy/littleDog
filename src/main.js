@@ -7,6 +7,11 @@ import $ from 'jquery'
 import VueResource from 'vue-resource';
 import 'bootstrap/css/bootstrap.min.css'
 import 'bootstrap/js/bootstrap.min.js'
+import * as filters from './common/js/filter.js'
+
+Object.keys(filters).forEach(key => {  
+  Vue.filter(key, filters[key])  
+})  
 
 Vue.use(VueResource);
 

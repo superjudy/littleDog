@@ -23,7 +23,7 @@
                 <img :src="food.icon" alt=""/>
               </div>
               <div class="col-xs-9">
-                <p @click="productDetial(food.id)">{{food.name}}</p>
+                <p @click="productDetial(food)">{{food.name}}</p>
                 <router-view/>
                 <p class="overflow-left">{{food.description}}</p>
                 <p><span>月售{{food.sellCount}}份</span><span style="margin-left:10px;">好评率{{food.rating}}%</span></p>
@@ -54,11 +54,11 @@ export default {
      _this.seller = res.seller;
      _this.goods = res.goods;
     },
-    productDetial:function(e){
+    productDetial:function(str){
       this.food = res.goods.foods;
       this.$router.push({
         path:'/productDetial',
-        query:{id:e}
+        query:str
       });
     }
   },
