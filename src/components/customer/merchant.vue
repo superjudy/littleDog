@@ -114,15 +114,6 @@ export default {
 .star li{
   display: inline;
 }
-.pd20{
-  padding-left: 20px;
-}
-.mchant-title{
-  line-height: 4rem;
-  font-size: 2.6rem;
-  border-top:1px solid #cccccc;
-  padding-top: 20px;
-}
 .info-num{
   font-size: 4rem;
 }
@@ -140,13 +131,6 @@ export default {
 .mchant-info li{
   float: left;
   width:33%;
-}
-.notice1{
-  color:#ff0000;
-  font-size: 2rem;
-  line-height: 3rem;
-  width:90%;
-  margin:0 auto;
 }
 .notice2{
   width: 100%;

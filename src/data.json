@@ -58,7 +58,7 @@
             "id": 28,
             "name": "皮蛋瘦肉粥",
             "price": 10,
-            "oldPrice": "",
+            "oldPrice": "20",
             "description": "咸粥",
             "sellCount": 229,
             "rating": 100,

@@ -9,3 +9,4 @@ let time = val => {
     return year+"-"+month+"-"+date+" "+hour+":"+minute+":"+second; 
 }
 export { time }  
+

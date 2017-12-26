@@ -147,4 +147,10 @@ p{
   float: right;
   margin:0 5px;
 }
+<<<<<<< HEAD
 </style>
+=======
+
+</style>
+
+>>>>>>> 3fbf509fee13f28df4dd5ddd4cfc37e9e3771365
