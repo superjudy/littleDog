@@ -119,7 +119,7 @@ export default {
         this.ratings[i].scoreArr = arr;
       }
     }
-  },
+  }
 }
 </script>
 

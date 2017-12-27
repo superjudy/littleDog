@@ -55,10 +55,6 @@ export default {
      _this.goods = res.goods;
     },
     productDetial:function(str){
-<<<<<<< HEAD
-      this.food = res.goods.foods;
-=======
->>>>>>> 3fbf509fee13f28df4dd5ddd4cfc37e9e3771365
       this.$router.push({
         path:'/productDetial',
         query:str
