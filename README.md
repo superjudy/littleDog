@@ -1,6 +1,23 @@
 # sell
 
-> sell app
+> vue.js practise
+
+> 这是借用饿了么的素材做的练习，之后会继续学习，逐步完善整个项目。
+  本项目仅用于 Vue.js 实战项目的学习，不作为商业用途。
+ （因为是vue.js的练习，所以没有对样式做相对调整。）
+
+## 项目地址
+
+git clone https://github.com/superjudy/littleDog.git
+
+## 项目组成
+
+* vue.js 2.0
+* vue-cli
+* webpack
+* vue-router
+* npm
+* bootstrap
 
 ## Build Setup
 
@@ -23,5 +40,3 @@ npm run e2e
 # run all tests
 npm test
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

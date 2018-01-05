@@ -39,5 +39,6 @@ export default new Router({
       name:productDetial,
       component:productDetial
     }
-  ]
+  ],
+  mode: 'history'
 })
