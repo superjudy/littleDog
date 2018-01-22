@@ -6,7 +6,17 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  created:function(){ 
+    this.rou();
+  },  
+  methods:{
+    rou:function(){
+      this.$router.push({
+        path:'/index/product'
+      });
+    }
+  }
 }
 </script>
 
