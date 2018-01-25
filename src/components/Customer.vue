@@ -32,6 +32,22 @@
       </ul>
     </div>
     <router-view/>
+
+    <!-- 购物车弹框 -->
+    <div class="cl-check-list">
+      <div class="cus-check">
+        <div>
+          <p>￥40</p>
+          <p>另需配送费<span>5</span>元</p>
+        </div>
+        <div>
+          结算(0)
+        </div>
+      </div>
+      <check-list></check-list>
+    </div>
+    
+
   </div>
 
   <!-- 优惠信息弹框 -->
@@ -77,7 +93,8 @@
 
 
 <script>
-import res from "../data.json"
+import res from "../data.json";
+import checkList from "./checkList.vue"
 export default {
   name:"customer",
   data () {
@@ -87,6 +104,9 @@ export default {
       supports: null,
       star:[]
     }
+  },
+  components:{
+    'check-list': checkList
   },
   methods:{
    abc:function(){
@@ -243,5 +263,43 @@ export default {
   text-shadow:none;
   float: none;
   margin-top: 3rem;
+}
+
+/* 购物车弹框 */
+.cl-check-list{
+  width:100%;
+  height:60px;
+  background:#efefef;
+  position:fixed;
+  left:0;
+  bottom:0;
+  z-index:99;
+  color:#333333;
+}
+.cus-check{
+  display:-webkit-flex;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  padding: 0 0 0 50px;
+}
+.cus-check>div:first-child{
+  text-align:left;
+}
+.cus-check>div:last-child{
+  background:#e8663b;
+  color:#ffffff;
+  height:60px;
+  line-height:60px;
+  padding:0 20px;
+}
+.cus-check>div:first-child>p{
+  margin:0;
+  line-height:24px;
+}
+.cus-check>div:first-child>p:first-child{
+  color:#e8663b;
+  margin-top:6px;
 }
 </style>

@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import $ from 'jquery'
 import VueResource from 'vue-resource';
+import './common/style/reset.css'
 import 'bootstrap/css/bootstrap.min.css'
 import 'bootstrap/js/bootstrap.min.js'
 import * as filters from './common/js/filter.js'
