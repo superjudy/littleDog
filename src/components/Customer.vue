@@ -45,9 +45,7 @@
         </div>
       </div>
 
-      <div class="cl-list">
-        <check-list ref="cusCheckList"></check-list>
-      </div>
+      <check-list ref="cusCheckList"></check-list>
       
     </div>
     
@@ -106,12 +104,11 @@ export default {
       seller: null,
       goods: null,
       supports: null,
-      star:[],
-      isOpen:true
+      star:[]
     }
   },
   components:{
-    'check-list': checkList
+    checkList
   },
   methods:{
    abc:function(){
@@ -128,21 +125,15 @@ export default {
        }
      }
    },
-   showList:function(){
-     this.isOpen = true;
-   },
-   hideList:function(){
-     this.isOpen = false;
-   },
-   changeBg:function(event){
+
+   changeBg:function(){
+    this.$refs['cusCheckList'].showList();
      var el = event.currentTarget;
      $(el).css({
        "color":"#fff",
        "background":"#e8663b"
      });
-     $(el).children().children("p").css( "color","#fff");
-
-      $(el).siblings().css('display','block');
+     $(el).find("p").css( "color","#fff");
    }
   },
   created:function(){
@@ -298,12 +289,18 @@ export default {
   color:#333333;
 }
 .cus-check{
+  width: 100%;
   display:-webkit-flex;
   display:flex;
   justify-content: space-between;
   align-items: center;
   font-size: 16px;
   padding: 0 0 0 50px;
+  position:fixed;
+  left:0;
+  bottom:0;
+  background:#efefef;
+  z-index:99;
 }
 .cus-check>div:first-child{
   text-align:left;
@@ -322,8 +319,5 @@ export default {
 .cus-check>div:first-child>p:first-child{
   color:#e8663b;
   margin-top:6px;
-}
-.cl-list{
-  display:none;
 }
 </style>
