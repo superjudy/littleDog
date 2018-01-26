@@ -22,14 +22,15 @@
               <div class="col-xs-3">
                 <img :src="food.icon" alt=""/>
               </div>
-              <div class="col-xs-9">
+              <div class="col-xs-9" style="position:relative;">
                 <p @click="productDetial(food)">{{food.name}}</p>
                 <router-view/>
                 <p class="overflow-left">{{food.description}}</p>
                 <p><span>月售{{food.sellCount}}份</span><span style="margin-left:10px;">好评率{{food.rating}}%</span></p>
                 <p style="color:#ff0000;">￥{{food.price}}</p>
+                <span class="add-cart">加入购物车</span>
               </div>
-            </div>            
+            </div>
           </div>
         </div>
       </div>
@@ -106,6 +107,17 @@ export default {
 .food-item{
   width:98%;
   margin:10px auto;
+}
+.add-cart{
+  position:absolute;
+  right:10px;
+  bottom:10px;
+  color:red;
+  border:1px solid red;
+  font-size:14px;
+  padding:3px 10px;
+  border-radius:12px;
+  cursor:pointer;
 }
 </style>
 

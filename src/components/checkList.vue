@@ -37,8 +37,6 @@ export default {
     }
   },
   methods:{
-  },
-  created:function(){
   }
 }
 </script>
@@ -52,6 +50,8 @@ export default {
   bottom:60px;
   z-index:999;
   color:#333333;
+  background:#fff;
+  box-shadow: 1px -5px 5px #eeeeee;
 }
 .topBar{
   display:-webkit-flex;
@@ -71,20 +71,38 @@ export default {
 }
 .list{
   max-height:300px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; 
+  overflow-scrolling: touch;
 }
 .list .line{
   display:-webkit-flex;
   display:flex;
   justify-content: space-between;
   align-items: center;
-  height:45px;
-  padding:0 15px;
+  height:50px;
+  padding:3px 15px;
+  border-bottom:1px solid #eee;
 }
 .line-num-oper{
   display:-webkit-flex;
   display:flex;
   justify-content: space-between;
   align-items: center; 
+  width:90px;
+  height:50px;
+  line-height:30px;
+}
+.line-num-oper input{
+  width:30px;
+  text-align:center;
+  height:30px;
+  border:0;
+  outline:none;
+}
+.line-num-oper input[type="text"]{
+  border-top:1px solid #ccc;
+  border-bottom:1px solid #ccc;
 }
 .line-item{
   display: -webkit-flex;
@@ -92,7 +110,18 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  width:40%;
-  background:#666;
+  width:60%;
+  height:50px;
+  line-height:50px;
+}
+.line-price{
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width:15%;
+  height:50px;
+  line-height:50px; 
 }
 </style>

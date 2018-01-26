@@ -35,16 +35,20 @@
 
     <!-- 购物车弹框 -->
     <div class="cl-check-list">
-      <div class="cus-check">
+      <div class="cus-check" @click="changeBg($event)" ref="cusCheck">
         <div>
           <p>￥40</p>
           <p>另需配送费<span>5</span>元</p>
         </div>
         <div>
-          结算(0)
+          结算(<span>0</span>)
         </div>
       </div>
-      <check-list></check-list>
+
+      <div class="cl-list">
+        <check-list ref="cusCheckList"></check-list>
+      </div>
+      
     </div>
     
 
@@ -94,7 +98,7 @@
 
 <script>
 import res from "../data.json";
-import checkList from "./checkList.vue"
+import checkList from "./checkList"
 export default {
   name:"customer",
   data () {
@@ -102,7 +106,8 @@ export default {
       seller: null,
       goods: null,
       supports: null,
-      star:[]
+      star:[],
+      isOpen:true
     }
   },
   components:{
@@ -122,6 +127,22 @@ export default {
          _this.star.push(false)
        }
      }
+   },
+   showList:function(){
+     this.isOpen = true;
+   },
+   hideList:function(){
+     this.isOpen = false;
+   },
+   changeBg:function(event){
+     var el = event.currentTarget;
+     $(el).css({
+       "color":"#fff",
+       "background":"#e8663b"
+     });
+     $(el).children().children("p").css( "color","#fff");
+
+      $(el).siblings().css('display','block');
    }
   },
   created:function(){
@@ -301,5 +322,8 @@ export default {
 .cus-check>div:first-child>p:first-child{
   color:#e8663b;
   margin-top:6px;
+}
+.cl-list{
+  display:none;
 }
 </style>
