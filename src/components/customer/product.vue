@@ -61,12 +61,11 @@ export default {
         query:str
       });
     },
-    addCart:function(){
+    addCart:function(v){
       var checkGoods = {
-        // name: this.food.name,
-        // price: this.food.price
-        name: 'zhangsan',
-        price: 10
+        name: v.name,
+        price: v.price,
+        num:1
       }
       this.$store.state.checkListData.push(checkGoods);
     }

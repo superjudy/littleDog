@@ -9,13 +9,13 @@
     </div>
     <div class="list">
 
-      <div class="line">
-        <div class="line-item">{{itemData.name}}</div>
-        <div class="line-price">￥22</div>
+      <div class="line" v-for="(v,index) in itemData" :key="v.name">
+        <div class="line-item">{{v.name}}</div>
+        <div class="line-price">￥{{v.price}}</div>
         <div class="line-num-oper">
-          <input type="button" value="-" @click="addNum(-1)"/>
-          <input type="text" v-model="this.num"/>
-          <input type="button" value="+" @click="addNum(1)"/>
+          <input type="button" value="-" @click="addNum(index,-1)"/>
+          <input type="text" v-model="v.num">
+          <input type="button" value="+" @click="addNum(index,1)"/>
         </div>
       </div>
 
@@ -46,21 +46,27 @@ export default {
   },
   methods:{
     param:function(){
-      this.itemData = this.$store.state.checkListData;
-      console.log(this.itemData);
+      var that = this;
+      setInterval(function () {
+         that.itemData = that.$store.state.checkListData;
+         console.log(that.itemData);
+      },10000)
     },
     toggleList:function(){
        this.isOpen = !this.isOpen;
        this.$emit('getSome',this.isOpen);
     },
-    addNum:function(type){
-      if(type == 1){
-        this.num ++;
-      }else if(type == -1){
-        this.num--;
-        if(this.num < 2){
-          this.num = 1;
+    addNum:function(index,type){
+      for (var i = 0; i < this.itemData.length; i++) {
+        if(i == index && type > 0){
+          this.itemData[i].num ++;
+        }else if(i == index && type < 0){
+          this.itemData[i].num --;
+          if(this.itemData[i].num == 0){
+            this.itemData.splice(index,1);
+          }
         }
+        
       }
     },
     confirmData:function(){
