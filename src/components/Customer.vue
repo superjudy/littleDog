@@ -21,13 +21,13 @@
     <div class="container-fluid">
       <ul class="nav nav-pills">
         <li role="presentation">
-          <router-link to="/index/product" class="">商品</router-link>
+          <router-link to="/index/product">商品</router-link>
         </li>
         <li role="presentation">
-          <router-link to="/index/appraise" class="">评价</router-link>          
+          <router-link to="/index/appraise">评价</router-link>          
         </li>
         <li role="presentation">
-          <router-link to="/index/merchant" class="">商家</router-link>
+          <router-link to="/index/merchant">商家</router-link>
         </li>
       </ul>
     </div>
@@ -35,17 +35,27 @@
 
     <!-- 购物车弹框 -->
     <div class="cl-check-list">
-      <div class="cus-check" @click="changeBg($event)" ref="cusCheck">
+      <div class="cus-check" :class="{'text-color':isOpen}" @click="changeBg($event)" ref="cusCheck">
         <div>
-          <p>￥40</p>
-          <p>另需配送费<span>5</span>元</p>
+          <p :class="{'p-color':isOpen}">￥
+          <span v-if="confirmData">{{confirmData.price}}</span>
+          <span v-if="!confirmData">0</span>
+          </p>
+          <p>
+            另需配送费
+            <span>5</span>
+            元
+          </p>
         </div>
         <div>
-          结算(<span>0</span>)
+          结算(
+          <span v-if="confirmData">{{confirmData.num}}</span>
+          <span v-if="!confirmData">0</span>
+          )
         </div>
       </div>
 
-      <check-list ref="cusCheckList"></check-list>
+      <check-list ref="cusCheckList" @getSome="getData" @transformData="transData"></check-list>
       
     </div>
     
@@ -104,7 +114,9 @@ export default {
       seller: null,
       goods: null,
       supports: null,
-      star:[]
+      star:[],
+      isOpen:false,
+      confirmData:null
     }
   },
   components:{
@@ -125,15 +137,14 @@ export default {
        }
      }
    },
-
    changeBg:function(){
-    this.$refs['cusCheckList'].showList();
-     var el = event.currentTarget;
-     $(el).css({
-       "color":"#fff",
-       "background":"#e8663b"
-     });
-     $(el).find("p").css( "color","#fff");
+    this.$refs['cusCheckList'].toggleList();
+   },
+   getData:function(val){
+     this.isOpen = val;
+   },
+   transData:function(val){
+     this.confirmData = val;
    }
   },
   created:function(){
@@ -302,6 +313,10 @@ export default {
   background:#efefef;
   z-index:99;
 }
+.cus-check.text-color{
+  background:#e8663b;
+  color:#ffffff;
+}
 .cus-check>div:first-child{
   text-align:left;
 }
@@ -319,5 +334,8 @@ export default {
 .cus-check>div:first-child>p:first-child{
   color:#e8663b;
   margin-top:6px;
+}
+.cus-check>div:first-child>p.p-color{
+  color:#ffffff;
 }
 </style>

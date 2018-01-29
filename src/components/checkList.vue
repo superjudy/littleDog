@@ -3,28 +3,28 @@
 
   <div class="check-list cl1-list" :class="{'show1': isOpen}">
     <div class="topBar">
-      <div class="cancel" @click="hideList">取消</div>
+      <div class="cancel" @click="toggleList">取消</div>
       <div class="title">购物车</div>
-      <div class="confirm">确定</div>
+      <div class="confirm" @click="confirmData">确定</div>
     </div>
     <div class="list">
 
       <div class="line">
-        <div class="line-item">名字名字名字</div>
-        <div class="line-price">￥30</div>
+        <div class="line-item">{{itemData.name}}</div>
+        <div class="line-price">￥22</div>
         <div class="line-num-oper">
-          <input type="button" value="-"/>
-          <input type="text" value="1"/>
-          <input type="button" value="+"/>
+          <input type="button" value="-" @click="addNum(-1)"/>
+          <input type="text" v-model="this.num"/>
+          <input type="button" value="+" @click="addNum(1)"/>
         </div>
       </div>
 
     </div> 
   </div>
 
-  <!-- mask -->
+  <!-- mask 
   <div class="cl-mask" v-if="isOpen"></div>
-
+  -->
 </div>
 </template>
 
@@ -35,15 +35,41 @@ export default {
   name:"checklist",
   data () {
     return {
-      isOpen: false
+      isOpen: false,
+      price:30,
+      num:1,
+      itemData:null
     }
   },
+  created:function(){
+    this.param();
+  },
   methods:{
-    showList:function(){
-       this.isOpen = true;
+    param:function(){
+      this.itemData = this.$store.state.checkListData;
+      console.log(this.itemData);
     },
-     hideList:function(){
-       this.isOpen = false;
+    toggleList:function(){
+       this.isOpen = !this.isOpen;
+       this.$emit('getSome',this.isOpen);
+    },
+    addNum:function(type){
+      if(type == 1){
+        this.num ++;
+      }else if(type == -1){
+        this.num--;
+        if(this.num < 2){
+          this.num = 1;
+        }
+      }
+    },
+    confirmData:function(){
+      this.isOpen = false;
+      var obj = {
+        price: this.price,
+        num: this.num
+      };
+      this.$emit('transformData',obj);
     }
   }
 }
@@ -53,10 +79,10 @@ export default {
 <style scoped>
 .clist-bg{
 	width: 100%;
-	height: 100%;
+	height: 200px;
 	position: fixed;
 	left:0;
-	top:0;
+	bottom:0;
 }
 .check-list{
   width:100%;

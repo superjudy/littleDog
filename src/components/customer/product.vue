@@ -28,7 +28,7 @@
                 <p class="overflow-left">{{food.description}}</p>
                 <p><span>月售{{food.sellCount}}份</span><span style="margin-left:10px;">好评率{{food.rating}}%</span></p>
                 <p style="color:#ff0000;">￥{{food.price}}</p>
-                <span class="add-cart">加入购物车</span>
+                <span class="add-cart" @click="addCart(food)">加入购物车</span>
               </div>
             </div>
           </div>
@@ -60,6 +60,15 @@ export default {
         path:'/productDetial',
         query:str
       });
+    },
+    addCart:function(){
+      var checkGoods = {
+        // name: this.food.name,
+        // price: this.food.price
+        name: 'zhangsan',
+        price: 10
+      }
+      this.$store.state.checkListData.push(checkGoods);
     }
   },
   created:function(){
