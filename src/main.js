@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import Vuex from 'vuex'
 import store from './vuex/store'
+import VueBus from 'vue-bus';
 import router from './router'
 import $ from 'jquery'
 import VueResource from 'vue-resource';
@@ -20,6 +21,8 @@ Vue.use(VueResource);
 
 Vue.use(Vuex);
 
+Vue.use(VueBus);
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
@@ -28,5 +31,8 @@ new Vue({
   router,
   store,
   template: '<App/>',
-  components: { App }
+  components: { App },
+  data:{
+    Bus: new Vue()
+  }
 })

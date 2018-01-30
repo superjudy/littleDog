@@ -68,6 +68,7 @@ export default {
         num:1
       }
       this.$store.state.checkListData.push(checkGoods);
+      this.$root.Bus.$emit('eventConfirmData');
     }
   },
   created:function(){

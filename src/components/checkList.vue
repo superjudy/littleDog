@@ -43,6 +43,11 @@ export default {
   },
   created:function(){
     this.param();
+    this.$root.Bus.$on('eventConfirmData',
+      function(){
+        // this.confirmData();
+        console.log("1");
+      });
   },
   methods:{
     param:function(){
@@ -50,7 +55,7 @@ export default {
       setInterval(function () {
          that.itemData = that.$store.state.checkListData;
          console.log(that.itemData);
-      },10000)
+      },5000)
     },
     toggleList:function(){
        this.isOpen = !this.isOpen;
@@ -87,15 +92,18 @@ export default {
       console.log(this.price);
     },
     confirmData:function(){
+      this.countNum();
+      this.countPrice();
       this.isOpen = false;
       var obj = {
         price: this.price,
         num: this.num
       };
       this.$emit('transformData',obj);
-      this.countNum();
-      this.countPrice();
     }
+  },
+  beforeDestroy:function(){
+    this.$root.Bus.$off('eventConfirmData');
   }
 }
 </script>
