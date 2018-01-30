@@ -14,6 +14,7 @@ git clone https://github.com/superjudy/littleDog.git
 
 * vue.js 2.0
 * vue-cli
+* vuex
 * vue-router
 * bootstrap
 

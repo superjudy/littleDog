@@ -22,9 +22,9 @@
     </div> 
   </div>
 
-  <!-- mask 
+  <!-- mask -->
   <div class="cl-mask" v-if="isOpen"></div>
-  -->
+  
 </div>
 </template>
 
@@ -36,8 +36,8 @@ export default {
   data () {
     return {
       isOpen: false,
-      price:30,
-      num:1,
+      price:0,
+      num:0,
       itemData:null
     }
   },
@@ -66,8 +66,25 @@ export default {
             this.itemData.splice(index,1);
           }
         }
-        
       }
+      this.countNum();
+      this.countPrice();
+    },
+    countNum:function(){
+      var _this = this;
+      this.num = 0;
+      this.itemData.forEach(function(e,i){
+        _this.num += e.num;
+      });
+      console.log(this.num);
+    },
+    countPrice:function(){
+      var _this = this;
+      this.price = 0;
+      this.itemData.forEach(function(e,i){
+        _this.price += e.num * e.price;
+      });
+      console.log(this.price);
     },
     confirmData:function(){
       this.isOpen = false;
@@ -76,6 +93,8 @@ export default {
         num: this.num
       };
       this.$emit('transformData',obj);
+      this.countNum();
+      this.countPrice();
     }
   }
 }
@@ -85,7 +104,7 @@ export default {
 <style scoped>
 .clist-bg{
 	width: 100%;
-	height: 200px;
+	height: auto;
 	position: fixed;
 	left:0;
 	bottom:0;
@@ -95,7 +114,7 @@ export default {
   position:fixed;
   left:0;
   bottom:60px;
-  z-index:9;
+  z-index:1009;
   color:#333333;
   background:#fff;
 }
@@ -171,10 +190,10 @@ export default {
   line-height:50px; 
 }
 .cl1-list{
-    overflow: hidden;
-    -webkit-transition: all .5s;
-    transition: all .5s;
-    -webkit-transform: translateY(100%);
+  overflow: hidden;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+  -webkit-transform: translateY(100%);
 	transform: translateY(100%);
 }
 .cl1-list.show1{
@@ -182,8 +201,14 @@ export default {
   transform: translateY(0%);
 }
 .cl-mask{
-	width: 100%;
-	height: 100%;
-	background: rgba(0,0,0,.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  background: rgba(0,0,0,.5);
+  -webkit-transition: all .5s;
+  transition: all .5s;
 }
 </style>
