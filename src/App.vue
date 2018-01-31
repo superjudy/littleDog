@@ -8,7 +8,7 @@
 export default {
   name: 'app',
   created:function(){ 
-    //this.rou();
+    this.rou();
   },  
   methods:{
     rou:function(){
